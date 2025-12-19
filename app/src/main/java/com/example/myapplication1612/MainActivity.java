@@ -2,6 +2,7 @@ package com.example.myapplication1612;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String BASE = "https://restcountries.com/v3.1/";
     private RecyclerView recyclerCountries;
     private CountryAdapter adapter;
+    private SearchView searchView;
 
 
     @Override
@@ -41,6 +43,22 @@ public class MainActivity extends AppCompatActivity {
         recyclerCountries.setLayoutManager(new LinearLayoutManager(this));
         recyclerCountries.setAdapter(adapter);
         fetchCountries();
+
+        searchView = findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.filter(query);
+                return true;
+            }
+        });
         }
 
     private void fetchCountries() {

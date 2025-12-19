@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#91CAF3"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:context=".WelcomeActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="333dp"
+        android:layout_height="255dp"
+        android:gravity="center"
+        android:text="דגלי ושמות מדינות העולם"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="50dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnEnter"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:backgroundTint="#793131"
+        android:text="כניסה לאפליקציה"
+        android:textColor="#FCF9F9"
+        android:textColorLink="#B33333"
+        android:textSize="20dp" />
+</LinearLayout>

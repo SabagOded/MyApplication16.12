@@ -18,6 +18,7 @@ public class CountryAdapter
         extends RecyclerView.Adapter<CountryAdapter.CountryViewHolder> {
 
     private final List<Country> countries = new ArrayList<>();
+    private final List<Country> allCountries = new ArrayList<>();
     static class CountryViewHolder extends RecyclerView.ViewHolder{
         TextView txtName;
         TextView txtNativeName;
@@ -54,9 +55,32 @@ public class CountryAdapter
     }
 
     public void setCountries(List<Country> newCountries){
+        allCountries.clear();
         countries.clear();
+
         if(newCountries != null){
+            allCountries.addAll(newCountries);
             countries.addAll(newCountries);
+        }
+        notifyDataSetChanged();
+    }
+
+    public void filter(String query){
+        countries.clear();
+
+        if (query == null || query.trim().isEmpty()){
+            countries.addAll(allCountries);
+        } else {
+            String q = query.toLowerCase().trim();
+
+            for (Country c : allCountries) {
+                String name = c.getName() != null ? c.getName() : "";
+                String nativeName = c.getNativeName() != null ? c.getNativeName() : "";
+
+                if (name.toLowerCase().contains(q) || nativeName.toLowerCase().contains(q)){
+                    countries.add(c);
+                }
+            }
         }
         notifyDataSetChanged();
     }
